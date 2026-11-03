@@ -41,7 +41,7 @@ GitHub connector 查詢結果 unsupported；依使用者提供的 git 憑據完�
 [x] 臨時 inspect 核對並刪除
 [x] README/AGENT/algorithm.xlsx 同步
 [x] 提交、推送 dev 分支、首輪四後端 CI 通過；紀錄更新後同步 main
-[ ] 清理臨時憑據
+[x] 清理臨時憑據
 
 [長期目標，不冒充本回合成果]
 10,000 條中階以上演算法與 5,000,000 行代碼為累計工程目標；本回合只登記真實完成且驗證的條目。
@@ -67,4 +67,10 @@ algorithm.xlsx 已建立並用 openpyxl 重開核對。
 Run：41700829531，https://github.com/algorithms10000/algo1/actions/runs/41700829531。
 結果：success；compile(wasm), compile(wasm-gc), compile(js), compile(native) 全部 success。
 每個 job 均執行官方 latest 穩定安裝、moon check --deny-warn --frozen、moon build --deny-warn --frozen；沒有 test/release/benchmark。
-現正提交 CI 結果到 Dev.txt 與 algorithm.xlsx；此紀錄更新須再通過相同 CI 才推送 main。
+CI 結果紀錄提交：e0d94ee7672133ddcdbe046a855e5999268b0614。
+第二輪 run：41701041459，https://github.com/algorithms10000/algo1/actions/runs/41701041459，success；四後端全部 success。
+已於第二輪通過後將 e0d94ee 推送 main，API 核對 main SHA 與 CI head_sha 相同。
+臨時 git 憑據檔已刪除；沒有寫入倉庫。使用者仍應撤銷對話中曾明文出現的 token。
+
+[本回合收口]
+工程、定理/演算法索引、CI 結果及 main 發布狀態均已記錄。此收口紀錄本身仍按相同規則：開發分支 CI 通過後才更新 main。
