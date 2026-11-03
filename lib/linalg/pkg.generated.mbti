@@ -1,0 +1,77 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "algorithms10000/algo1/lib/linalg"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn inverse(Int64, Int64) -> Int64 raise MatrixError
+
+pub fn is_prime(Int64) -> Bool
+
+pub fn residue(Int64, Int64) -> Int64
+
+// Errors
+#derive(@debug.Debug)
+pub(all) suberror MatrixError {
+  InvalidModulus(Int64)
+  InvalidDimensions(Int32, Int32)
+  InvalidEntryCount(Int32, Int32)
+  DimensionMismatch(Int32, Int32)
+  NotSquare(Int32, Int32)
+  Singular
+  NegativeExponent(Int64)
+}
+pub fn MatrixError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+#derive(@debug.Debug)
+pub struct AffineSolution {
+  particular : FixedArray[Int64]
+  basis : Array[FixedArray[Int64]]
+}
+pub fn AffineSolution::basis(Self) -> Array[FixedArray[Int64]]
+pub fn AffineSolution::particular(Self) -> FixedArray[Int64]
+pub fn AffineSolution::to_repr(Self) -> @debug.Repr
+
+#derive(Eq, @debug.Debug)
+pub struct Matrix {
+  rows : Int32
+  columns : Int32
+  modulus : Int64
+  entries : FixedArray[Int64]
+}
+pub fn Matrix::apply(Self, FixedArray[Int64]) -> FixedArray[Int64] raise MatrixError
+pub fn Matrix::columns(Self) -> Int32
+pub fn Matrix::determinant(Self) -> Int64 raise MatrixError
+pub fn Matrix::equal(Self, Self) -> Bool
+pub fn Matrix::get(Self, Int32, Int32) -> Int64 raise MatrixError
+pub fn Matrix::identity(Int32, Int64) -> Self raise MatrixError
+pub fn Matrix::kernel(Self) -> Array[FixedArray[Int64]] raise MatrixError
+pub fn Matrix::modulus(Self) -> Int64
+pub fn Matrix::multiply(Self, Self) -> Self raise MatrixError
+pub fn Matrix::new(Int32, Int32, Int64, Array[Int64]) -> Self raise MatrixError
+pub fn Matrix::not_equal(Self, Self) -> Bool
+pub fn Matrix::power(Self, Int64) -> Self raise MatrixError
+pub fn Matrix::rows(Self) -> Int32
+pub fn Matrix::rref(Self) -> RowEchelon raise MatrixError
+pub fn Matrix::solve(Self, Array[Int64]) -> AffineSolution? raise MatrixError
+pub fn Matrix::subtract(Self, Self) -> Self raise MatrixError
+pub fn Matrix::to_array(Self) -> Array[Array[Int64]]
+pub fn Matrix::to_repr(Self) -> @debug.Repr
+pub fn Matrix::zero(Int32, Int32, Int64) -> Self raise MatrixError
+
+#derive(@debug.Debug)
+pub struct RowEchelon {
+  matrix : Matrix
+  pivot_columns : Array[Int32]
+}
+pub fn RowEchelon::matrix(Self) -> Matrix
+pub fn RowEchelon::pivot_columns(Self) -> Array[Int32]
+pub fn RowEchelon::rank(Self) -> Int32
+pub fn RowEchelon::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

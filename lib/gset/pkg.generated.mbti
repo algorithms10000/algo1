@@ -1,0 +1,70 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "algorithms10000/algo1/lib/gset"
+
+import {
+  "algorithms10000/algo1/lib/permutation",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn extend_map(Action, Action, Array[(Int32, Int32)]) -> EquivariantMap raise
+
+pub fn invariant_closure(Action, Int32, Int32) -> Array[Array[Int32]] raise
+
+pub fn is_primitive(Action) -> Bool
+
+// Errors
+#derive(@debug.Debug)
+pub(all) suberror ActionError {
+  GeneratorCountMismatch(Int32, Int32)
+  InvalidMapLength(Int32, Int32)
+  InvalidMapImage(Int32, Int32)
+  NotEquivariant(Int32, Int32)
+  ConflictingSeed(Int32, Int32, Int32)
+  MissingSeed(Int32)
+  SizeOverflow(Int32, Int32)
+}
+pub fn ActionError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+#derive(Eq, @debug.Debug)
+pub struct Action {
+  degree : Int32
+  generators : Array[@permutation.Permutation]
+}
+pub fn Action::coproduct(Self, Self) -> Self raise
+pub fn Action::degree(Self) -> Int32
+pub fn Action::equal(Self, Self) -> Bool
+pub fn Action::generators(Self) -> Array[@permutation.Permutation]
+pub fn Action::new(Int32, Array[@permutation.Permutation]) -> Self raise @permutation.DomainError
+pub fn Action::not_equal(Self, Self) -> Bool
+pub fn Action::product(Self, Self) -> Self raise
+pub fn Action::to_repr(Self) -> @debug.Repr
+
+#derive(@debug.Debug)
+pub struct EquivariantMap {
+  source : Action
+  target : Action
+  images : FixedArray[Int32]
+}
+pub fn EquivariantMap::image(Self, Int32) -> Int32 raise
+pub fn EquivariantMap::new(Action, Action, Array[Int32]) -> Self raise
+pub fn EquivariantMap::to_images(Self) -> FixedArray[Int32]
+pub fn EquivariantMap::to_repr(Self) -> @debug.Repr
+
+#derive(@debug.Debug)
+pub struct Pullback {
+  left_target : Action
+  right_target : Action
+  object : Action
+  left_projection : FixedArray[Int32]
+  right_projection : FixedArray[Int32]
+}
+pub fn Pullback::action(Self) -> Action
+pub fn Pullback::new(EquivariantMap, EquivariantMap) -> Self raise
+pub fn Pullback::projections(Self) -> (EquivariantMap, EquivariantMap)
+pub fn Pullback::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

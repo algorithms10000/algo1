@@ -1,0 +1,4 @@
+import {
+  "moonbitlang/core/debug",
+  "algorithms10000/algo1/lib/linalg",
+}

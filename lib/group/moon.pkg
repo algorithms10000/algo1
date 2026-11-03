@@ -1,0 +1,5 @@
+import {
+  "moonbitlang/core/debug",
+  "algorithms10000/algo1/lib/permutation",
+  "moonbitlang/core/bigint",
+}

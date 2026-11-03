@@ -1,0 +1,50 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "algorithms10000/algo1/lib/galois"
+
+import {
+  "algorithms10000/algo1/lib/field",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn subfield_lattice(@field.FiniteField) -> Array[SubfieldCorrespondence]
+
+// Errors
+
+// Types and methods
+#derive(Eq, @debug.Debug)
+pub struct Automorphism {
+  field : @field.FiniteField
+  exponent : Int32
+}
+pub fn Automorphism::apply(Self, @field.Element) -> @field.Element raise
+pub fn Automorphism::compose(Self, Self) -> Self raise
+pub fn Automorphism::equal(Self, Self) -> Bool
+pub fn Automorphism::exponent(Self) -> Int32
+pub fn Automorphism::inverse(Self) -> Self
+pub fn Automorphism::new(@field.FiniteField, Int32) -> Self
+pub fn Automorphism::not_equal(Self, Self) -> Bool
+pub fn Automorphism::order(Self) -> Int32
+pub fn Automorphism::to_repr(Self) -> @debug.Repr
+
+#derive(@debug.Debug)
+pub struct SubfieldCorrespondence {
+  ambient : @field.FiniteField
+  degree : Int32
+  basis : Array[@field.Element]
+}
+pub fn SubfieldCorrespondence::basis(Self) -> Array[@field.Element]
+pub fn SubfieldCorrespondence::compositum_degree(Self, Self) -> Int32 raise
+pub fn SubfieldCorrespondence::contains(Self, @field.Element) -> Bool raise
+pub fn SubfieldCorrespondence::degree(Self) -> Int32
+pub fn SubfieldCorrespondence::intersection_degree(Self, Self) -> Int32 raise
+pub fn SubfieldCorrespondence::new(@field.FiniteField, Int32) -> Self raise
+pub fn SubfieldCorrespondence::subgroup_generator(Self) -> Automorphism
+pub fn SubfieldCorrespondence::subgroup_intersection_exponent(Self, Self) -> Int32 raise
+pub fn SubfieldCorrespondence::subgroup_join_exponent(Self, Self) -> Int32 raise
+pub fn SubfieldCorrespondence::subgroup_order(Self) -> Int32
+pub fn SubfieldCorrespondence::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

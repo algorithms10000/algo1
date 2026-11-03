@@ -1,0 +1,49 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "algorithms10000/algo1/lib/permutation"
+
+import {
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/debug",
+}
+
+// Values
+
+// Errors
+#derive(@debug.Debug)
+pub(all) suberror DomainError {
+  NegativeDegree(Int32)
+  PointOutOfRange(Int32, Int32)
+  NotBijection
+  DegreeMismatch(Int32, Int32)
+  InvalidCycle
+}
+pub fn DomainError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+#derive(Eq, Hash, @debug.Debug)
+pub struct Permutation {
+  images : FixedArray[Int32]
+}
+pub fn Permutation::compose(Self, Self) -> Self raise DomainError
+pub fn Permutation::cycles(Self) -> Array[Array[Int32]]
+pub fn Permutation::degree(Self) -> Int32
+pub fn Permutation::equal(Self, Self) -> Bool
+pub fn Permutation::fixed_points(Self) -> Array[Int32]
+pub fn Permutation::from_cycles(Int32, Array[Array[Int32]]) -> Self raise DomainError
+pub fn Permutation::from_images(Array[Int32]) -> Self raise DomainError
+pub fn Permutation::hash(Self) -> Int32
+pub fn Permutation::hash_combine(Self, Hasher) -> Unit
+pub fn Permutation::identity(Int32) -> Self raise DomainError
+pub fn Permutation::image(Self, Int32) -> Int32 raise DomainError
+pub fn Permutation::inverse(Self) -> Self
+pub fn Permutation::is_identity(Self) -> Bool
+pub fn Permutation::not_equal(Self, Self) -> Bool
+pub fn Permutation::order(Self) -> @bigint.BigInt
+pub fn Permutation::power(Self, Int64) -> Self
+pub fn Permutation::sign(Self) -> Int32
+pub fn Permutation::to_images(Self) -> FixedArray[Int32]
+pub fn Permutation::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

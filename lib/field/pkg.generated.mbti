@@ -1,0 +1,70 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "algorithms10000/algo1/lib/field"
+
+import {
+  "algorithms10000/algo1/lib/linalg",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn is_irreducible(Int64, Array[Int64]) -> Bool raise
+
+// Errors
+#derive(@debug.Debug)
+pub(all) suberror FieldError {
+  InvalidCharacteristic(Int64)
+  EmptyModulus
+  NotMonic
+  ReducibleModulus
+  FieldMismatch
+  ZeroInverse
+  InvalidSubfieldDegree(Int32, Int32)
+  DimensionMismatch(Int32, Int32)
+}
+pub fn FieldError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+#derive(Eq, @debug.Debug)
+pub struct Element {
+  field : FiniteField
+  coefficients : FixedArray[Int64]
+}
+pub fn Element::add(Self, Self) -> Self raise
+pub fn Element::coefficients(Self) -> FixedArray[Int64]
+pub fn Element::equal(Self, Self) -> Bool
+pub fn Element::field(Self) -> FiniteField
+pub fn Element::frobenius_power(Self, Int64) -> Self raise
+pub fn Element::inverse(Self) -> Self raise
+pub fn Element::is_zero(Self) -> Bool
+pub fn Element::minimal_polynomial(Self) -> FixedArray[Int64] raise
+pub fn Element::multiply(Self, Self) -> Self raise
+pub fn Element::negate(Self) -> Self raise
+pub fn Element::norm(Self) -> Self
+pub fn Element::not_equal(Self, Self) -> Bool
+pub fn Element::power(Self, Int64) -> Self raise
+pub fn Element::subtract(Self, Self) -> Self raise
+pub fn Element::to_repr(Self) -> @debug.Repr
+pub fn Element::trace(Self) -> Self
+
+#derive(Eq, @debug.Debug)
+pub struct FiniteField {
+  characteristic : Int64
+  modulus : FixedArray[Int64]
+  frobenius : @linalg.Matrix
+}
+pub fn FiniteField::characteristic(Self) -> Int64
+pub fn FiniteField::degree(Self) -> Int32
+pub fn FiniteField::element(Self, Array[Int64]) -> Element raise
+pub fn FiniteField::equal(Self, Self) -> Bool
+pub fn FiniteField::frobenius_matrix(Self) -> @linalg.Matrix
+pub fn FiniteField::generator(Self) -> Element raise
+pub fn FiniteField::modulus(Self) -> FixedArray[Int64]
+pub fn FiniteField::new(Int64, Array[Int64]) -> Self raise
+pub fn FiniteField::not_equal(Self, Self) -> Bool
+pub fn FiniteField::one(Self) -> Element raise
+pub fn FiniteField::to_repr(Self) -> @debug.Repr
+pub fn FiniteField::zero(Self) -> Element raise
+
+// Type aliases
+
+// Traits

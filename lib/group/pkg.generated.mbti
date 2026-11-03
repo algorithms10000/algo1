@@ -1,0 +1,56 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "algorithms10000/algo1/lib/group"
+
+import {
+  "algorithms10000/algo1/lib/permutation",
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn orbit_partition(Int32, Array[@permutation.Permutation]) -> Array[Array[Int32]] raise @permutation.DomainError
+
+// Errors
+
+// Types and methods
+#derive(@debug.Debug)
+type Level
+pub fn Level::to_repr(Self) -> @debug.Repr
+
+#derive(@debug.Debug)
+pub struct OrbitTree {
+  degree : Int32
+  root_point : Int32
+  generators : Array[@permutation.Permutation]
+  points : Array[Int32]
+  parent : FixedArray[Int32]
+  edge : FixedArray[Int32]
+  position : FixedArray[Int32]
+}
+pub fn OrbitTree::build(Int32, Array[@permutation.Permutation], Int32) -> Self raise @permutation.DomainError
+pub fn OrbitTree::contains(Self, Int32) -> Bool
+pub fn OrbitTree::points(Self) -> Array[Int32]
+pub fn OrbitTree::stabilizer_generators(Self) -> Array[@permutation.Permutation] raise @permutation.DomainError
+pub fn OrbitTree::to_repr(Self) -> @debug.Repr
+pub fn OrbitTree::transport(Self, Int32) -> @permutation.Permutation raise @permutation.DomainError
+
+#derive(@debug.Debug)
+pub struct PermutationGroup {
+  degree : Int32
+  levels : Array[Level]
+}
+pub fn PermutationGroup::base(Self) -> Array[Int32]
+pub fn PermutationGroup::contains(Self, @permutation.Permutation) -> Bool raise @permutation.DomainError
+pub fn PermutationGroup::degree(Self) -> Int32
+pub fn PermutationGroup::is_transitive(Self) -> Bool
+pub fn PermutationGroup::new(Int32, Array[@permutation.Permutation]) -> Self raise @permutation.DomainError
+pub fn PermutationGroup::orbit_sizes(Self) -> Array[Int32]
+pub fn PermutationGroup::order(Self) -> @bigint.BigInt
+pub fn PermutationGroup::prefix_stabilizer_generators(Self, Int32) -> Array[@permutation.Permutation] raise @permutation.DomainError
+pub fn PermutationGroup::strong_generators(Self) -> Array[@permutation.Permutation]
+pub fn PermutationGroup::to_repr(Self) -> @debug.Repr
+pub fn PermutationGroup::transitivity_degree(Self) -> Int32
+
+// Type aliases
+
+// Traits

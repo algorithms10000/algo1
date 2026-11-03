@@ -1,0 +1,35 @@
+name: Global compilation
+
+on:
+  push:
+    branches: [main, "dev/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compile-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [wasm, wasm-gc, js, native]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install official latest stable MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Record compiler version
+        run: |
+          moon version
+          moonc -v
+      - name: Global type and interface check
+        run: moon check --target "${{ matrix.target }}" --deny-warn --frozen
+      - name: Global compilation
+        run: moon build --target "${{ matrix.target }}" --deny-warn --frozen

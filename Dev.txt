@@ -1,0 +1,62 @@
+algo1 — 開發流水帳
+時區：Asia/Hong_Kong
+
+[2026-11-04 / Session 0001 / 開始]
+來源指示：工程內容0001.md、工程約束.md、作業規範.md、結合案例.md。
+使用者批准：從零建立 MoonBit 專案；建立必要文檔；開發分支 CI 全局編譯通過後推送 main。
+inspect 最新澄清：即寫、即驗、即刪的臨時單元快照驗證；不保留長期 inspect 測試。
+驗證方式：局部編譯 + 臨時 inspect；提交前刪除；CI 僅全局編譯，不用 --release，不跑基準測試。
+遠端：https://github.com/algorithms10000/algo1
+憑據只作工作環境外圍認證，不寫入倉庫或此文檔。
+
+[規劃]
+全局數學命題採有限 Galois 擴張基本定理的嚴格適用形式，不將任意群作用誤稱為 Galois 對應。
+局部模型：有限域 F_p[x]/(f)，p 為不超過 2^31-1 的質數，f 單首不可約；點為 0..n-1。
+首批：置換、精確 Schreier–Sims、軌道傳輸樹、區塊系統、等變映射與纖維積、模質數線性代數、Rabin 不可約判定、有限體 Frobenius 與子體格。
+每項須有定義/命題/推導、真實實作、複雜度、接口及臨時 inspect 驗證；未驗證不登記為完成。
+
+[聯網查核]
+官方安裝：https://www.moonbitlang.com/download/
+官方文件：https://docs.moonbitlang.com/en/latest/toolchain/moon/tutorial.html
+新 moon.mod / moon.pkg：官方 module/package 文件；此穩定版普通命令不再接受舊 JSON manifest。
+官方錯誤處理：https://docs.moonbitlang.com/en/latest/language/error-handling.html
+官方版本公告（較舊）：https://www.moonbitlang.com/updates/2026/09/21/index
+實際官方 latest：moon 0.1.20261102 (ea07287)，moonc v0.10.19+bee578715 (2026-11-02)。
+官方 linux-x86_64 穩定包 SHA-256 已核對：PASS。
+最新語法要點：derive(Debug)、debug_inspect（inspect 為 deprecated alias）、for loop、顯式 raise、moon.mod/moon.pkg。
+Knuth Schreier–Sims：https://yumichael.github.io/schreier-sims/Knuth-paper.pdf
+Atkinson 區塊分析：https://dl.acm.org/doi/10.1145/130933.130935
+Rabin 判準及有限體形式化：https://isa-afp.org/entries/Finite_Fields.html
+
+[倉庫狀態]
+克隆成功；原倉庫完全空，沒有既有程式碼或測試，因此沒有執行下載後測試。
+GitHub connector 查詢結果 unsupported；依使用者提供的 git 憑據完成 git/API 操作。
+
+[待辦]
+[x] 置換與確定性 BSGS
+[x] 有限 G-集合、等變映射、纖維積
+[x] 模質數 RREF/核空間
+[x] 有限體與 Rabin 判準
+[x] 有限體 Galois 對應
+[x] 臨時 inspect 核對並刪除
+[x] README/AGENT/algorithm.xlsx 同步
+[ ] 提交、推送 dev 分支、等待 CI、通過後推送 main
+[ ] 清理臨時憑據
+
+[長期目標，不冒充本回合成果]
+10,000 條中階以上演算法與 5,000,000 行代碼為累計工程目標；本回合只登記真實完成且驗證的條目。
+後續主題：軌道類型圖、2-範疇/等變函子、Kan 擴張、BB 分解、矩映射、Kac–Moody 等變層。
+
+[Session 0001 / 本地完成_checkpoint_2026-11-04 03:08 HKT]
+已完成：6 個套件、18 個演算法/族、18 條定理/命題索引、18 條核心等式。
+實作修正：左作用 Schreier 公式採 target^(-1)∘generator∘transport；新強生成元須閉合所有受影響前綴軌道；RREF 增廣主元無解分支；等變映射目標與區塊判準。
+臨時驗證：14 個測試塊全部通過（permutation 2、group 5、linalg 2、field 2、gset 1、galois 2）。
+群論：degrees 2..7 共 72 組確定性生成 family 與獨立閉包/前綴軌道穩定子核對；A5=60、D8=16、S20=20!。
+有限體：F16 全元素；F9、F64 子體格；Rabin、逆元、Frobenius、跡範數、最小多項式與 signed exponent 邊界。
+6 個 zz_tmp_verify.mbt 已於本地最終重跑後刪除；沒有保留 test block / inspect。
+全局 moon check --deny-warn --frozen：PASS。
+全局 wasm moon build --deny-warn --frozen（非 release）：PASS。
+README 每資料夾已補：定理、演算法、依賴圖、動線、接口。AGENT.md 與使用者工程約束原文一致。
+algorithm.xlsx 已建立並用 openpyxl 重開核對。
+工作時間由約 02:22 至本 checkpoint 03:08 HKT，超過 15 分鐘。
+下一步：提交並推送 dev/session-0001；等待四後端 CI；只有通過後推送 main。
